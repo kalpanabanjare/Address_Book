@@ -138,7 +138,7 @@ namespace AddressBook
                             }
                             break;
                         case 2:
-                            Console.WriteLine("Enter the number of person that you want to add");
+                            Console.WriteLine("Enter the number of person that you want to edit");
                             int editPerson = int.Parse(Console.ReadLine());
                             for (int numOfPerson = 1; numOfPerson <= editPerson; numOfPerson++)
                             {
