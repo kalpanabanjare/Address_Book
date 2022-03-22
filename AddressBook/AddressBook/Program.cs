@@ -149,7 +149,7 @@ namespace AddressBook
                             }
                             break;
                         case 3:
-                            Console.WriteLine("Enter the number of person that you want to add");
+                            Console.WriteLine("Enter the number of person that you want to delete");
                             int deletePerson = int.Parse(Console.ReadLine());
                             for (int numOfPerson = 1; numOfPerson <= deletePerson; numOfPerson++)
                             {
