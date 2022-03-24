@@ -7,6 +7,7 @@ namespace AddressBook
 {
     class Contacts
     {
+        public string addressBook;
         public string FirstName;
         public string LastName;
         public string Address;
@@ -15,8 +16,9 @@ namespace AddressBook
         public int ZipCode;
         public int PhoneNumber;
         public string Email;
-        public Contacts(string FirstName, string LastName, string Address, string City, string State, int ZipCode, int PhoneNumber, string Email)
+        public Contacts(string addressBook, string FirstName, string LastName, string Address, string City, string State, int ZipCode, int PhoneNumber, string Email)
         {
+            this.addressBook = addressBook;
             this.FirstName = FirstName;
             this.LastName = LastName;
             this.Address = Address;
@@ -36,13 +38,17 @@ namespace AddressBook
         {
             private ArrayList contactDetailsList;
             private Dictionary<string, Contacts> contactDetailsMap;
+            private Dictionary<string, Dictionary<string, Contacts>> multipleAddressBookMap;
+
             public AddressBook()
             {
                 contactDetailsList = new ArrayList();
                 contactDetailsMap = new Dictionary<string, Contacts>();
+                multipleAddressBookMap = new Dictionary<string, Dictionary<string, Contacts>>();
             }
             public void AddDetails()
             {
+                string addressBook = Console.ReadLine();
                 Console.WriteLine("Enter First name");
                 string FirstName = Console.ReadLine();
                 Console.WriteLine("Enter Last name");
@@ -59,21 +65,23 @@ namespace AddressBook
                 int PhoneNumber = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter Email Address");
                 string Email = Console.ReadLine();
-                Contacts contactDetails = new Contacts(FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email);
+                Contacts contactDetails = new Contacts(addressBook,FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email);
                 contactDetailsList.Add(contactDetails);
                 contactDetailsMap.Add(FirstName, contactDetails);
+                multipleAddressBookMap.Add(addressBook, contactDetailsMap);
             }
             public void ComputeDetails()
             {
                 foreach (Contacts contact in contactDetailsList)
                 {
-                    Console.WriteLine(contact.ToString());
+                        Console.WriteLine(contact.ToString());
                 }
             }
             public void EditDetails(string Name)
             {
                 if (contactDetailsMap.ContainsKey(Name))
                 {
+                    string addressBook = Console.ReadLine();
                     Console.WriteLine("Enter First name");
                     string FirstName = Console.ReadLine();
                     Console.WriteLine("Enter Last name");
@@ -90,7 +98,7 @@ namespace AddressBook
                     int PhoneNumber = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Enter Email Address");
                     string Email = Console.ReadLine();
-                    Contacts contactDetails = new Contacts(FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email);
+                    Contacts contactDetails = new Contacts(addressBook, FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email);
                     contactDetailsList.Add(contactDetails);
                     contactDetailsMap[FirstName] = contactDetails;
                 }
