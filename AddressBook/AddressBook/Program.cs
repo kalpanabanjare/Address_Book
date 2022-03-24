@@ -128,9 +128,14 @@ namespace AddressBook
                     Option = int.Parse(Console.ReadLine());
                         switch (Option)
                         {
-                            case 1:                            
-                                    details.AddDetails();
-                                   details.ComputeDetails();                           
+                            case 1:
+                            Console.WriteLine("Enter the number of person that you want to add");
+                            int addPerson = int.Parse(Console.ReadLine());
+                            for (int numOfPerson = 1; numOfPerson <= addPerson; numOfPerson++)
+                            {
+                                details.AddDetails();
+                                details.ComputeDetails();
+                            }
                                 break;
                             case 2:
                                     Console.WriteLine("Enter a First Name to Edit");
