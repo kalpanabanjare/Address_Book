@@ -92,7 +92,7 @@ namespace AddressBook
                     string Email = Console.ReadLine();
                     Contacts contactDetails = new Contacts(FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email);
                     contactDetailsList.Add(contactDetails);
-                    contactDetailsMap[Name] = contactDetails;
+                    contactDetailsMap[FirstName] = contactDetails;
                 }
                 else
                 {
@@ -106,7 +106,7 @@ namespace AddressBook
                 if (contactDetailsMap.ContainsKey(DName.ToLower()))
                 {
                     contactDetailsMap.Remove(DName.ToLower());
-                    Console.WriteLine("Deleted");
+                    Console.WriteLine("Deleted");                    
                 }
                 else
                 {
@@ -126,46 +126,31 @@ namespace AddressBook
                     Console.WriteLine("4 to show contact details");
                     Console.WriteLine("0 To Exit");
                     Option = int.Parse(Console.ReadLine());
-                    switch (Option)
-                    {
-                        case 1:
-                            Console.WriteLine("Enter the number of person that you want to add");
-                            int addPerson = int.Parse(Console.ReadLine());
-                            for (int numOfPerson = 1; numOfPerson <= addPerson; numOfPerson++)
-                            {
-                                details.AddDetails();
-                                details.ComputeDetails();
-                            }
-                            break;
-                        case 2:
-                            Console.WriteLine("Enter the number of person that you want to edit");
-                            int editPerson = int.Parse(Console.ReadLine());
-                            for (int numOfPerson = 1; numOfPerson <= editPerson; numOfPerson++)
-                            {
-                                Console.WriteLine("Enter a First Name to Edit");
-                                string Name = Console.ReadLine();
-                                details.EditDetails(Name);
-                                details.ComputeDetails();
-                            }
-                            break;
-                        case 3:
-                            Console.WriteLine("Enter the number of person that you want to delete");
-                            int deletePerson = int.Parse(Console.ReadLine());
-                            for (int numOfPerson = 1; numOfPerson <= deletePerson; numOfPerson++)
-                            {
-                                details.DeleteContact();
-                            }
-                            break;
-                        case 4:
-                            details.ComputeDetails();
-                            break;
-                        case 0:
-                            Console.WriteLine("Exit");
-                            break;
-                        default:
-                            Console.WriteLine("Wrong Opction");
-                            break;
-                    }
+                        switch (Option)
+                        {
+                            case 1:                            
+                                    details.AddDetails();
+                                   details.ComputeDetails();                           
+                                break;
+                            case 2:
+                                    Console.WriteLine("Enter a First Name to Edit");
+                                    string Name = Console.ReadLine();
+                                    details.EditDetails(Name);
+                                    details.ComputeDetails();
+                                break;
+                            case 3:                            
+                                    details.DeleteContact();                            
+                                break;
+                            case 4:
+                                    details.ComputeDetails();
+                                break;
+                            case 0:
+                                    Console.WriteLine("Exit");
+                                break;
+                            default:
+                                    Console.WriteLine("Wrong Opction");
+                                break;
+                        }                                
                 }
                 while (Option != 0);
             }
